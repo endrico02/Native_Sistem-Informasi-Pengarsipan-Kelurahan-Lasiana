@@ -32,9 +32,9 @@
   
                 <h5>Login Akun Kamu</h5> 
                 <hr class="my-4">
-                <button class="btn btn-lg btn-block btn-primary" style="background-color: #3b5998;" type="submit">Login Petugas Penerima Tamu</button>
-                <button class="btn btn-lg btn-block btn-primary" style="background-color: #3b5998;" type="submit">Login Petugas Operator</button>
-                <button class="btn btn-lg btn-block btn-primary" style="background-color: #3b5998;" type="submit">Login Petugas Pegarsipan</button>
+                    <a href="login_petugas_penerima_tamu.php" class="btn btn-lg btn-block btn-primary" style="background-color: #3b5998;">Petugas Penerima Tamu</a>
+                    <a href="login_petugas_operator.php" class="btn btn-lg btn-block btn-primary" style="background-color: #3b5998;" type="submit">Petugas Operator</a>
+                    <a href="login_petugas_pengarsipan.php" class="btn btn-lg btn-block btn-primary" style="background-color: #3b5998;" type="submit">Petugas Pengarsipan</a>
   
             </div>
           </div>
