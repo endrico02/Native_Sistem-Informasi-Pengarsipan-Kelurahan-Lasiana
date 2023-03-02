@@ -1,3 +1,20 @@
+<?php 
+    session_start();
+    if (isset($_SESSION["login"])==""){
+        header("location: index.php");
+    }
+    $nama   = $_SESSION['nama'];
+    $level  = $_SESSION['level'];
+    if($level == '1'){
+        $jabatan = 'Petugas Penerima Tamu';
+    }
+    if($level == '2'){
+        $jabatan = 'Petugas Operator';
+    }
+    if($level == '3'){
+        $jabatan = 'Petugas Pengarsipan';
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,40 +22,57 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <img src="assets/logo.png" width="70px" alt="">
-        <a class="navbar-brand" href="#">Sistem Informasi Pengarsipan</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Beranda <span class="sr-only">(current)</span></a>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="#">Data Tamu</a>
-            </li> -->
-            </ul>
+    <header class="p-3 mb-3 border-bottom">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                <img src="assets/logo.png" width="70px" alt="">
+                    <span class="fs-4">Sistem Informasi Pengarsipan</span>
+                </a>
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 link-secondary">Beranda</a></li>
+                <!-- <li><a href="#" class="nav-link px-2 link-dark">Data Tamu</a></li> -->
+                <!-- <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li> -->
+                <!-- <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+                </ul>
+
+                <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+                </form> -->
+
+                <div class="dropdown text-end">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="assets/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+                    <!-- <li><a class="dropdown-item" href="#">New project...</a></li> -->
+                    <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->
+                    <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
+                    <!-- <li><hr class="dropdown-divider"></li> -->
+                    <li><a class="dropdown-item" href="logout.php">Keluar</a></li>
+                </ul>
+                </div>
+            </div>
         </div>
-    </nav>
+    </header>
+ 
+
     <div class="container-fluid">
         <div class="row justify-content-center pt-4">
             <div class="col-11">
                 <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Selamat Datang Administrator</h4>
+                    <h4 class="alert-heading">Selamat Datang <?= $nama ?></h4>
                     <hr>
-                    <p class="mb-0">Anda Login Sebagai Petugas Penerima Tamu</p>
+                    <p class="mb-0">Anda Login Sebagai <?= $jabatan ?></p>
                     
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
 </html>

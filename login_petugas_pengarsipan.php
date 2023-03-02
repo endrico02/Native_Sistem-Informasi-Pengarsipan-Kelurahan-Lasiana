@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  include "koneksi.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,7 +49,7 @@
             <h4>Sistem Informasi Pengarsipan <br> Kelurahan Lasiana</h4>
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form>
+          <form method="POST">
             <div class="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
               <p class="lead fw-normal mb-0 me-3">Selamat Datang <b>Petugas Pengarsipan</b></p>
             </div>
@@ -54,14 +58,16 @@
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <input type="email" id="form3Example3" class="form-control form-control-lg"
-                placeholder="Enter a valid email address" />
-              <label class="form-label" for="form3Example3">Email address</label>
+              <input type="text" name="username" class="form-control form-control-lg"
+                placeholder="Enter a valid username" />
+              <label class="form-label" for="form3Example3">Username</label>
             </div>
+
+
 
             <!-- Password input -->
             <div class="form-outline mb-3">
-              <input type="password" id="form3Example4" class="form-control form-control-lg"
+              <input type="password" name="password" class="form-control form-control-lg"
                 placeholder="Enter password" />
               <label class="form-label" for="form3Example4">Password</label>
             </div>
@@ -77,7 +83,7 @@
             </div> -->
 
             <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
+              <button type="submit" name="submit" class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Login</button>
               <a href="index.php" class="btn btn-info btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;">Kembali</a>
               <!-- <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
                   class="link-danger">Register</a></p> -->
@@ -95,6 +101,39 @@
   <script type="text/javascript" src="assets/js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript"></script>
+  <script src="assets/alert.js"></script>
 </body>
 
 </html>
+<?php 
+  if(isset($_POST['submit'])){
+    $username = $_POST['username'];
+    // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $password = $_POST['password'];
+
+    $query1   = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND level='3' LIMIT 1");
+    $cek1     = mysqli_num_rows($query1);
+    if($cek1){
+      // echo $password;
+      $data   = mysqli_fetch_assoc($query1);
+      if (password_verify($password, $data['password'])) {
+        $_SESSION['nama']   = $data['nama'];
+        $_SESSION['level']  = $data['level'];
+        $_SESSION['login']  = '1';
+
+        echo "
+          <script>
+              Swal.fire({
+                  title: 'Login Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
+              }).then((result) => {
+              if (result.value){
+                  window.location = 'dashboard.php';}
+              })
+          </script>
+        ";
+      } else {
+          // echo 'Invalid password.';
+      }
+    }
+  }
+?>

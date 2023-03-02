@@ -1,4 +1,7 @@
-<?php include "koneksi.php" ?>
+<?php
+  session_start();
+  include "koneksi.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -44,7 +47,6 @@
             
             <img src="assets/logo.png" class="img-fluid" width="300px" alt="Sample image">
             <h4>Sistem Informasi Pengarsipan <br> Kelurahan Lasiana</h4>
-            
         </div>
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
           <form method="POST">
@@ -99,6 +101,7 @@
   <script type="text/javascript" src="assets/js/mdb.min.js"></script>
   <!-- Custom scripts -->
   <script type="text/javascript"></script>
+  <script src="assets/alert.js"></script>
 </body>
 
 </html>
@@ -108,13 +111,26 @@
     // $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $password = $_POST['password'];
 
-    $query1   = mysqli_query($conn, "SELECT username, password FROM users WHERE username='$username' LIMIT 1");
+    $query1   = mysqli_query($conn, "SELECT * FROM users WHERE username='$username' AND level='1' LIMIT 1");
     $cek1     = mysqli_num_rows($query1);
     if($cek1){
       // echo $password;
       $data   = mysqli_fetch_assoc($query1);
       if (password_verify($password, $data['password'])) {
-        // echo 'Password is valid!';
+        $_SESSION['nama']   = $data['nama'];
+        $_SESSION['level']  = $data['level'];
+        $_SESSION['login']  = '1';
+
+        echo "
+          <script>
+              Swal.fire({
+                  title: 'Login Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
+              }).then((result) => {
+              if (result.value){
+                  window.location = 'dashboard.php';}
+              })
+          </script>
+        ";
       } else {
           // echo 'Invalid password.';
       }
