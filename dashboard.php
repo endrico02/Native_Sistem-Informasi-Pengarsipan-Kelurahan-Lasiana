@@ -34,10 +34,7 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2 link-secondary">Beranda</a></li>
-                <!-- <li><a href="#" class="nav-link px-2 link-dark">Data Tamu</a></li> -->
-                <!-- <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li> -->
-                <!-- <li><a href="#" class="nav-link px-2 link-dark">Products</a></li> -->
+                    <?php include "menu.php" ?>
                 </ul>
 
                 <!-- <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -47,7 +44,9 @@
                 <div class="dropdown text-end">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="assets/png-transparent-profile-logo-computer-icons-user-user-blue-heroes-logo-thumbnail.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                    <span class="fs-10"><?= $nama ?></span>
                 </a>
+                
                 <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                     <!-- <li><a class="dropdown-item" href="#">New project...</a></li> -->
                     <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->

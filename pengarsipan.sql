@@ -1,5 +1,5 @@
 ﻿# Host: localhost  (Version 5.5.5-10.4.27-MariaDB)
-# Date: 2023-03-02 17:25:33
+# Date: 2023-03-03 19:36:20
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -15,7 +15,7 @@ CREATE TABLE `users` (
   `username` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_users`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 #
 # Data for table "users"
